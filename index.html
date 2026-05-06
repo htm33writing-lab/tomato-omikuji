@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>開運トマト 養生おみくじ 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#faf9f6;
+  --bg2:#f2f0eb;
+  --text:#2c2a25;
+  --muted:#7a7670;
+  --border:#d8d4cc;
+  --accent:#8B4513;
+  --accent2:#C85A2A;
+}
+body{font-family:'Noto Sans JP',sans-serif;font-weight:300;background:var(--bg);color:var(--text);min-height:100vh}
+.wrap{max-width:480px;margin:0 auto;padding:1.5rem 1rem 4rem}
+.header{text-align:center;padding:2rem 0 2rem;border-bottom:0.5px solid var(--border);margin-bottom:2rem}
+.tomato-mark{font-size:32px;display:block;margin-bottom:10px}
+.header-ja{font-family:'Shippori Mincho',serif;font-size:24px;font-weight:500;letter-spacing:0.15em;color:var(--text);display:block}
+.header-sub{font-size:12px;color:var(--muted);letter-spacing:0.1em;margin-top:6px;display:block}
+.step{display:none}
+.step.active{display:block}
+.check-title{font-family:'Shippori Mincho',serif;font-size:17px;font-weight:500;margin-bottom:6px;color:var(--text)}
+.check-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem;line-height:1.7}
+.month-label{font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:6px}
+.month-row{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap}
+.month-btn{padding:7px 18px;background:transparent;border:0.5px solid var(--border);border-radius:20px;font-size:13px;color:var(--muted);cursor:pointer;transition:all 0.2s;font-family:'Noto Sans JP',sans-serif}
+.month-btn.active{border-color:var(--accent);color:var(--accent)}
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
+.type-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer;transition:border-color 0.2s,background 0.2s;text-align:left}
+.type-card:hover{border-color:#aaa}
+.type-card.selected{border-color:var(--accent2);background:#fff}
+.type-card .icon{font-size:20px;margin-bottom:6px;display:block}
+.type-card .name{font-size:14px;font-weight:500;color:var(--text);display:block;margin-bottom:2px}
+.type-card .desc{font-size:12px;color:var(--muted);line-height:1.5}
+.draw-section{text-align:center;padding:1.5rem 0}
+.draw-title{font-family:'Shippori Mincho',serif;font-size:14px;color:var(--muted);margin-bottom:1.5rem;letter-spacing:0.08em}
+.draw-btn{display:inline-block;padding:15px 48px;background:transparent;border:0.5px solid var(--accent);border-radius:8px;font-family:'Shippori Mincho',serif;font-size:16px;font-weight:500;color:var(--accent);cursor:pointer;letter-spacing:0.12em;transition:background 0.2s,color 0.2s}
+.draw-btn:hover{background:var(--accent);color:#fff}
+.draw-btn:disabled{opacity:0.35;cursor:default}
+.result-card{background:#fff;border:0.5px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1rem}
+.hexagram{text-align:center;margin-bottom:1.5rem}
+.hex-symbol{font-size:52px;line-height:1;display:block;margin-bottom:8px}
+.hex-name{font-family:'Shippori Mincho',serif;font-size:24px;font-weight:500;letter-spacing:0.2em;color:var(--text);display:block}
+.hex-reading{font-size:13px;color:var(--muted);letter-spacing:0.08em;margin-top:4px;display:block}
+.divider{width:40px;height:0.5px;background:var(--border);margin:1rem auto}
+.fortune-msg{font-family:'Shippori Mincho',serif;font-size:15px;color:var(--text);line-height:1.9;text-align:center;margin-bottom:1rem}
+.luck-badge{display:inline-block;padding:3px 16px;border:0.5px solid var(--accent);border-radius:20px;font-size:11px;color:var(--accent);letter-spacing:0.12em;margin-bottom:1rem}
+.recipe-label{font-size:11px;color:var(--muted);letter-spacing:0.12em;margin-bottom:8px}
+.recipe-name{font-family:'Shippori Mincho',serif;font-size:19px;font-weight:500;color:var(--text);margin-bottom:12px}
+.ingredient-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.ingredient-pill{font-size:12px;background:var(--bg2);border:0.5px solid var(--border);border-radius:20px;padding:4px 12px;color:var(--text)}
+.recipe-steps{margin-top:10px}
+.step-item{display:flex;gap:10px;margin-bottom:8px;font-size:13px;color:var(--muted);line-height:1.6}
+.step-num{color:var(--accent2);font-weight:500;min-width:16px;font-family:'Shippori Mincho',serif}
+.acupoint{background:var(--bg2);border:0.5px solid var(--border);border-radius:8px;padding:12px 14px;margin-top:14px;font-size:12px;color:var(--muted);line-height:1.8}
+.acupoint strong{color:var(--text);font-weight:500}
+.bottom-row{display:flex;gap:10px;margin-top:1.5rem}
+.btn-secondary{flex:1;padding:13px;background:transparent;border:0.5px solid var(--border);border-radius:8px;font-family:'Noto Sans JP',sans-serif;font-size:13px;color:var(--muted);cursor:pointer;transition:border-color 0.2s}
+.btn-secondary:hover{border-color:#aaa;color:var(--text)}
+.btn-primary{flex:1;padding:13px;background:transparent;border:0.5px solid var(--accent);border-radius:8px;font-family:'Shippori Mincho',serif;font-size:14px;color:var(--accent);cursor:pointer;letter-spacing:0.06em;transition:background 0.2s,color 0.2s}
+.btn-primary:hover{background:var(--accent);color:#fff}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn 0.4s ease both}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="header">
+  <span class="tomato-mark">🍅</span>
+  <span class="header-ja">開運トマト 養生おみくじ</span>
+  <span class="header-sub">2026 丙午 &#8231; 体質から引く、今日の一卦</span>
+</div>
+
+<div id="step1" class="step active">
+  <p class="check-title">今のあなたはどのタイプ？</p>
+  <p class="check-sub">当てはまるものを選んでください。複数あれば最も気になるものを。</p>
+  <div class="month-label">今の季節・月を選ぶ</div>
+  <div class="month-row" id="monthRow">
+    <button class="month-btn active" data-m="4">4月</button>
+    <button class="month-btn" data-m="5">5月</button>
+    <button class="month-btn" data-m="6">6月</button>
+    <button class="month-btn" data-m="7">7月</button>
+  </div>
+  <div class="type-grid" id="typeGrid">
+    <div class="type-card" data-type="0">
+      <span class="icon">△</span>
+      <span class="name">エネルギー不足</span>
+      <span class="desc">疲れやすく、やる気が出ない。朝が重い。</span>
+    </div>
+    <div class="type-card" data-type="1">
+      <span class="icon">〜</span>
+      <span class="name">ストレス・イライラ</span>
+      <span class="desc">感情の波が激しく、気が張っている。</span>
+    </div>
+    <div class="type-card" data-type="2">
+      <span class="icon">◇</span>
+      <span class="name">うるおい不足</span>
+      <span class="desc">肌や目が乾燥する。ほてりがある。</span>
+    </div>
+    <div class="type-card" data-type="3">
+      <span class="icon">■</span>
+      <span class="name">巡り滞り</span>
+      <span class="desc">肩こりや頭痛が定着。目の下にクマ。</span>
+    </div>
+    <div class="type-card" data-type="4" style="grid-column:span 2">
+      <span class="icon">○</span>
+      <span class="name">むくみ・水溜まり</span>
+      <span class="desc">体が重だるく、雨の日に不調になる。夕方に靴がきつい。</span>
+    </div>
+  </div>
+  <div class="draw-section">
+    <p class="draw-title">体質を選んで、卦を引いてください</p>
+    <button class="draw-btn" id="drawBtn" disabled onclick="drawOmikuji()">卦を引く</button>
+  </div>
+</div>
+
+<div id="step2" class="step">
+  <div id="resultContent"></div>
+  <div class="bottom-row">
+    <button class="btn-secondary" onclick="reset()">最初からやり直す</button>
+    <button class="btn-primary" onclick="copyRecipe()">レシピをコピー</button>
+  </div>
+</div>
+</div>
+
+<script>
+const DATA = {
+  types:["エネルギー不足","ストレス・イライラ","うるおい不足","巡り滞り","むくみ・水溜まり"],
+  hexagrams:[
+    {symbol:"☰",name:"乾",reading:"けん",meaning:"天・力・行動"},
+    {symbol:"☵",name:"坎",reading:"かん",meaning:"水・不安・腎"},
+    {symbol:"☲",name:"離",reading:"り",meaning:"火・心・潤い"},
+    {symbol:"☳",name:"震",reading:"しん",meaning:"雷・動・肝"},
+    {symbol:"☶",name:"艮",reading:"ごん",meaning:"山・静・土台"},
+    {symbol:"☷",name:"坤",reading:"こん",meaning:"地・養・蓄える"},
+    {symbol:"☴",name:"巽",reading:"そん",meaning:"風・縁・広がり"},
+    {symbol:"☱",name:"兌",reading:"だ",meaning:"沢・喜・解放"}
+  ],
+  fortunes:["大吉","中吉","小吉","吉","末吉"],
+  messages:[
+    "火のエネルギーが味方する時。直感を信じ、即行動を。",
+    "水と火のバランスが整っています。今の自分を褒めて。",
+    "少しオーバーヒート気味。「何もしない時間」を自分に。",
+    "一白水星の力が働き、不要なものが去る時。整理を。",
+    "今はエネルギー充電期。身体への投資が最大の開運へ。"
+  ],
+  recipes:{
+    0:{
+      4:{name:"トマトと鶏肉のトロトロ煮",ingredients:["トマト（潤い）","鶏肉（温・甘）","塩","オリーブオイル"],steps:["トマトと鶏肉を一口大に切る","弱火でじっくり、形が崩れるまで煮込む","塩と少量のオリーブオイルで味を調える"],point:"鶏肉の「温」でトマトの「涼」を和らげ、消化器を労りつつ元気を補給。",acupoint:"「足三里」で胃腸を整え、新生活の疲れを予防。"},
+      5:{name:"トマトと豆腐の温かい和風スープ",ingredients:["トマト","豆腐（白・土）","生姜","出汁"],steps:["出汁を温め、角切り豆腐とトマトを入れる","生姜をすりおろして加える","薄口醤油で整える"],point:"2026年ラッキーフードの豆腐で土台補強。生姜の温が気虚を補う。",acupoint:"「気海」を温め、元気の根を育てる。"},
+      6:{name:"トマトとバジルのリゾット風",ingredients:["トマト","ご飯","バジル（木）","粉チーズ"],steps:["トマトを細かく切り、ご飯と合わせて弱火で温める","バジルと粉チーズを混ぜる","黒胡椒を少量散らす"],point:"温かく食べやすい形でエネルギーを補充。バジルで気の循環も。",acupoint:"「太白」で脾を補い、食べ物からの気の変換力を高める。"},
+      7:{name:"トマトと豆類のスープ煮",ingredients:["トマト","ミックスビーンズ（土・未）","玉ねぎ","コンソメ"],steps:["玉ねぎを炒め、トマトとビーンズを加える","コンソメで煮込み、塩胡椒で整える","温かいまま食べる"],point:"豆類の「土」のエネルギーで脾を補い、夏の疲れを防ぐ。",acupoint:"「三陰交」で脾・腎を同時にケア。"}
+    },
+    1:{
+      4:{name:"トマトとセロリの香草マリネ",ingredients:["トマト（熱を冷ます）","セロリ（涼・苦甘）","オリーブオイル","レモン汁"],steps:["トマトとセロリを薄切りにする","オリーブオイル、レモン汁、塩で和える","冷蔵庫で15分ほど冷やし、香りを引き立てる"],point:"セロリの香りが胸につかえたストレスの滞りをフワッと巡らせる。",acupoint:"「太衝」を押してイライラを根から解消。"},
+      5:{name:"トマトとミョウガの冷製和え",ingredients:["トマト","ミョウガ（辛・温）","大葉","ポン酢"],steps:["トマトをくし切り、ミョウガと大葉を千切りに","ポン酢とごま油少量で和える","氷水で少し冷やしてから盛る"],point:"ミョウガの辛味が気を動かし、五月の停滞を突き破る。",acupoint:"「内関」で自律神経を整え、変化への適応力を高める。"},
+      6:{name:"トマトとミントのデトックスウォーター",ingredients:["トマト（小）","フレッシュミント","きゅうり","炭酸水"],steps:["材料を薄切りにしてピッチャーへ","冷水か炭酸水を注いで30分冷やす","そのまま飲むか、具も食べる"],point:"香りの力で気を巡らせオーバーヒートを防ぐ。",acupoint:"「曲池」を冷やし気味に押して、余分な熱を逃がす。"},
+      7:{name:"トマトとオクラのねばねば和え",ingredients:["トマト","オクラ（ぷるん）","納豆","めんつゆ"],steps:["オクラを茹でて輪切り、トマトを角切りに","納豆と混ぜ、めんつゆで味を整える","冷やして食べる"],point:"ねばっとした食感が2026年の美容運を支える。肝の熱を静める。",acupoint:"「太衝」＋「期門」で肝気の疏泄を促す。"}
+    },
+    2:{
+      4:{name:"トマトと山芋の白和え風",ingredients:["トマト（水分補給）","山芋（平・甘）","醤油","白胡麻"],steps:["山芋をすりおろすか、細かく叩く","湯むきしたトマトを一口大に切る","醤油を少々垂らし、トマトに山芋をふんわり絡める"],point:"幸運の「白い食材」山芋が、火で乾いた体に潤いを補給する。",acupoint:"「照海」で腎陰を補い、のぼせ・乾燥を根から改善。"},
+      5:{name:"トマトと豆乳のポタージュ",ingredients:["トマト","豆乳（水・白）","玉ねぎ","塩"],steps:["玉ねぎをオリーブオイルで透明になるまで炒める","トマトを加えて崩しながら煮る","豆乳を加えてミキサーにかけ、塩で整える（沸騰させない）"],point:"2026年最強の潤い食材「豆乳」が水枯れを補い、火の年の乾燥から肌を守る。",acupoint:"「三陰交」で陰液を補う養生を継続して。"},
+      6:{name:"冷製トマトとアボカドの白和え",ingredients:["トマト","アボカド（脂・潤い）","絹豆腐","レモン汁","塩"],steps:["豆腐の水気をよく切り、なめらかに潰す","角切りのトマトとアボカドを混ぜ込む","レモン汁と塩で味を整えて冷やす"],point:"三種の潤い食材が重なり、強い火から陰液を守り抜く一皿。",acupoint:"「腎兪」を温め、潤いの貯蔵庫を補充。"},
+      7:{name:"トマトゼリーの冷製デザート",ingredients:["トマト（搾り汁）","ゼラチン","蜂蜜","レモン汁"],steps:["トマトをすりおろして濾す（約200ml）","温めてゼラチンを溶かし、蜂蜜とレモンを加える","冷蔵庫で固めて冷やしていただく"],point:"2026年ラッキー食感の「ぷるん」で、心に余裕と潤いをチャージ。",acupoint:"「太渓」で腎陰を補い、夏の消耗をリカバリー。"}
+    },
+    3:{
+      4:{name:"トマトと玉ねぎの黒酢ピクルス",ingredients:["トマト（血行ベース）","玉ねぎ（温・辛）","黒酢（温・酸苦）","蜂蜜","塩"],steps:["玉ねぎを薄切りにし、トマトをくし切りに","黒酢、少量の蜂蜜、塩で作った液に漬け込む","一晩寝かせて味を馴染ませる"],point:"黒酢の温める力と酸味が、滞った血流をスムーズに押し流す。",acupoint:"「血海」を押して瘀血を散らす。お風呂上がりに。"},
+      5:{name:"トマトとニラの炒め煮",ingredients:["トマト","ニラ（温・辛）","卵","ごま油"],steps:["ニラを3cm幅に切り、卵を溶いておく","ごま油でニラを炒め、トマトを加える","卵を回しかけてふんわり仕上げる"],point:"ニラの温・辛が気と血の停滞を破る。",acupoint:"「膈兪」で血の会穴を刺激し、全身の血行を整える。"},
+      6:{name:"トマトとパプリカのマリネ",ingredients:["トマト","赤パプリカ（温・甘）","バルサミコ酢","バジル"],steps:["パプリカを焼いて皮をむき、細切りにする","トマトと合わせてバルサミコ酢で和える","バジルを散らして30分なじませる"],point:"赤色の食材が心と血を養う。気血を整えておく。",acupoint:"「太衝」＋「合谷」の四関穴で気血を全身に巡らせる。"},
+      7:{name:"トマトと夏野菜のガスパチョ",ingredients:["トマト","きゅうり","パプリカ","ガーリック","オリーブオイル"],steps:["全材料をミキサーにかけて滑らかにする","塩・酢で味を整え、冷蔵庫でしっかり冷やす","オリーブオイルをひと回しかけて盛る"],point:"液体で摂ることで消化を助けながら気血を巡らせる。",acupoint:"「百会」を柔らかく押して、脳の疲労と気滞を同時に解消。"}
+    },
+    4:{
+      4:{name:"トマトとハトムギの冷製スープ",ingredients:["トマト（スッキリ感）","ハトムギ（微寒・甘淡）","塩","出汁","オリーブオイル"],steps:["茹でたハトムギとトマトをミキサーにかける","少量の塩と出汁で味を調える","冷やして、オリーブオイルをひと回し"],point:"ハトムギで余分な水をデトックス。液体として摂取し、浄化力を高める。",acupoint:"「陰陵泉」で脾の水分代謝を活性化。"},
+      5:{name:"トマトとわかめの酢の物",ingredients:["トマト","わかめ（寒・鹹）","米酢","生姜"],steps:["わかめを戻して食べやすく切る","トマトのくし切りと合わせる","米酢、生姜汁、塩で和える"],point:"わかめの鹹が余分な水を散らし、酢の酸が利水を助ける。",acupoint:"「水分」ツボをやさしく温めて、水の代謝を促す。"},
+      6:{name:"トマトとはと麦茶のゼリー寄せ",ingredients:["トマト","はと麦茶（利水）","ゼラチン","レモン"],steps:["はと麦茶200mlを温めてゼラチンを溶かす","角切りトマトを型に入れ、茶を注ぐ","レモン汁を少量加えて冷やし固める"],point:"利水作用のあるぷるん食感で、体内の余分な水分を排出。",acupoint:"「豊隆」で痰湿を化し、体の重だるさをすっきりさせる。"},
+      7:{name:"トマトと冬瓜の煮物",ingredients:["トマト","冬瓜（寒・甘）","生姜","出汁"],steps:["冬瓜の皮をむいて一口大に切る","出汁で冬瓜を柔らかくなるまで煮る","トマトと生姜を加えて仕上げる"],point:"冬瓜の利水作用でむくみの根本を断つ。生姜が過度な寒を調整。",acupoint:"「三陰交」＋「陰陵泉」のダブルケアで夏のむくみに対処。"}
+    }
+  }
+};
+
+let selectedType=null, selectedMonth=4;
+
+document.querySelectorAll('.month-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.month-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedMonth=parseInt(btn.dataset.m);
+  });
+});
+
+document.querySelectorAll('.type-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    document.querySelectorAll('.type-card').forEach(c=>c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedType=parseInt(card.dataset.type);
+    document.getElementById('drawBtn').disabled=false;
+  });
+});
+
+function drawOmikuji(){
+  const hex=DATA.hexagrams[Math.floor(Math.random()*DATA.hexagrams.length)];
+  const fi=Math.floor(Math.random()*DATA.fortunes.length);
+  const recipe=DATA.recipes[selectedType][selectedMonth];
+  const typeName=DATA.types[selectedType];
+  window._lastRecipe={type:typeName,month:selectedMonth,name:recipe.name,hex:hex.name,recipe:recipe};
+  const html=`
+  <div class="result-card fade-in">
+    <div class="hexagram">
+      <span class="hex-symbol">${hex.symbol}</span>
+      <span class="hex-name">${hex.name}</span>
+      <span class="hex-reading">（${hex.reading}）${hex.meaning}</span>
+    </div>
+    <div style="text-align:center">
+      <span class="luck-badge">${DATA.fortunes[fi]}</span>
+    </div>
+    <div class="divider"></div>
+    <p class="fortune-msg">${DATA.messages[fi]}</p>
+  </div>
+  <div class="result-card fade-in" style="animation-delay:0.15s">
+    <p class="recipe-label">○ ${typeName}タイプへ · ${selectedMonth}月のレシピ</p>
+    <p class="recipe-name">${recipe.name}</p>
+    <div class="ingredient-row">${recipe.ingredients.map(i=>`<span class="ingredient-pill">${i}</span>`).join('')}</div>
+    <div class="recipe-steps">
+      ${recipe.steps.map((s,i)=>`<div class="step-item"><span class="step-num">${i+1}</span><span>${s}</span></div>`).join('')}
+    </div>
+    <div class="acupoint"><strong>養生ポイント：</strong>${recipe.point}<br><strong>ツボ：</strong>${recipe.acupoint}</div>
+  </div>`;
+  document.getElementById('resultContent').innerHTML=html;
+  document.getElementById('step1').classList.remove('active');
+  document.getElementById('step2').classList.add('active');
+}
+
+function reset(){
+  selectedType=null; selectedMonth=4;
+  document.querySelectorAll('.type-card').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('.month-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.month-btn[data-m="4"]').classList.add('active');
+  document.getElementById('drawBtn').disabled=true;
+  document.getElementById('step1').classList.add('active');
+  document.getElementById('step2').classList.remove('active');
+}
+
+function copyRecipe(){
+  const r=window._lastRecipe;
+  if(!r) return;
+  const text=`【${r.month}月の開運レシピ】${r.name}\n\n材料：${r.recipe.ingredients.join('、')}\n\n作り方：\n${r.recipe.steps.map((s,i)=>`${i+1}. ${s}`).join('\n')}\n\n養生ポイント：${r.recipe.point}\nツボ：${r.recipe.acupoint}`;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(()=>alert('レシピをコピーしました'));
+  } else {
+    const ta=document.createElement('textarea');
+    ta.value=text; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta); alert('レシピをコピーしました');
+  }
+}
+</script>
+</body>
+</html>
